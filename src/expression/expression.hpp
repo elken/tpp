@@ -28,6 +28,12 @@ public:
         _size++;
     }
 
+    void fill(byte val, int count) {
+        for (int i = 0; i < count; ++i) {
+            append(val);
+        }
+    }
+
     Iterator begin() {
         return Iterator(left);
     }
@@ -44,6 +50,21 @@ public:
         return ConstIterator(right->next);
     }
 
+    bool operator==(Expression& e) {
+        if (e.size() == _size) {
+            Iterator lhs_begin = begin();
+            Iterator lhs_end = end();
+            Iterator rhs_begin = e.begin();
+            Iterator rhs_end = e.end();
+            for (; lhs_begin != lhs_end, rhs_begin != rhs_end; ++lhs_begin, ++rhs_begin) {
+                if (*lhs_begin != *rhs_begin) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     std::size_t size() {
         return _size;
     }
@@ -55,7 +76,7 @@ public:
     Expression() : _size(0), left(nullptr), right(nullptr) {
     }
 
-    Expression(std::initializer_list<byte> list) : _size(list.size()), left(nullptr), right(nullptr) {
+    Expression(std::initializer_list<byte> list) : _size(0), left(nullptr), right(nullptr) {
         for (auto item : list) {
             append(item);
         }
