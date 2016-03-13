@@ -4,10 +4,8 @@ project(tpp)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
 set(TEST_NAME ${PROJECT_NAME}_test)
 include_directories(src)
-include_directories(tests/lib)
+include_directories(tests/lib/googletest tests/lib/googletest/include)
 enable_testing()
-
-find_package(GTest REQUIRED)
 
 set(EXPRESSION_FILES
     src/expression/include.hpp)
