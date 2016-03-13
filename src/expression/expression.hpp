@@ -15,14 +15,6 @@ class Expression {
     Node* right;
 
 public:
-    void print() {
-        Node* node = left;
-        while (node != nullptr) {
-            std::cout << node->value << "\t";
-            node = node->next;
-        }
-    }
-
     void append(byte val) {
         Node* node = new Node(val);
         if (right != nullptr) {
@@ -60,7 +52,13 @@ public:
         return _size == 0;
     }
 
-    Expression() : left(nullptr), right(nullptr) {
+    Expression() : _size(0), left(nullptr), right(nullptr) {
+    }
+
+    Expression(std::initializer_list<byte> list) : _size(list.size()), left(nullptr), right(nullptr) {
+        for (auto item : list) {
+            append(item);
+        }
     }
 
     ~Expression() {
