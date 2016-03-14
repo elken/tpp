@@ -13,3 +13,4 @@ set(SOURCE_FILES
     src/globals.hpp)
 
 add_executable(${PROJECT_NAME} ${SOURCE_FILES})
+add_custom_target(check COMMAND cd tests && ${CMAKE_CTEST_COMMAND} DEPENDS TestRunner)
