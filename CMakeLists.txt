@@ -3,10 +3,7 @@ project(tpp)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 include_directories(src)
-
-if (WITH_TESTS)
-    add_subdirectory(tests)
-endif()
+add_subdirectory(tests)
 
 set(EXPRESSION_FILES
     src/expression/include.hpp)
