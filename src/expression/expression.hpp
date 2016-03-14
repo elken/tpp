@@ -6,6 +6,7 @@
 #include "node.hpp"
 #include "iterator.hpp"
 #include <iostream>
+#include <chrono>
 
 namespace tpp {
 namespace expression {
@@ -83,6 +84,7 @@ public:
     }
 
     ~Expression() {
+        auto start = std::chrono::high_resolution_clock::now();
         Node* node = right;
         while (node != nullptr) {
             Node* old_back = node;
@@ -91,6 +93,7 @@ public:
         }
         left = nullptr;
         right = nullptr;
+        std::cout << "Deconstruction took " << std::chrono::duration<double>(std::chrono::high_resolution_clock::now() - start).count() << std::endl;
     }
 };
 } // expression
